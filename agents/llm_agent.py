@@ -58,9 +58,10 @@ def call_llm(prompt, system_prompt="", truncate=True):
         model = provider['model']
         
         if name == 'google':
+            if not api_key:
+                raise ProviderError(401, "No Google API key")
             _google_client = genai_client.Client(
-                api_key=api_key
-            ) if api_key else None
+                api_key=api_key)
             try:
                 full_prompt = system_prompt + "\n\n" + prompt if system_prompt else prompt
                 response = _google_client.models.generate_content(
@@ -133,9 +134,10 @@ def call_gemma4(prompt):
         model = provider['model']
         
         if name == 'google':
+            if not api_key:
+                raise ProviderError(401, "No Google API key")
             _google_client = genai_client.Client(
-                api_key=api_key
-            ) if api_key else None
+                api_key=api_key)
             try:
                 response = _google_client.models.generate_content(
                     model="gemini-2.5-flash",

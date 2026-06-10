@@ -1,6 +1,7 @@
 import time
 import requests
 import logging
+from core.memory import load_memory, save_memory
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -11,7 +12,6 @@ class ProviderError(Exception):
         self.message = message
 
 def call_with_fallback(provider_chain, call_func):
-    from core.memory import load_memory, save_memory
     
     memory = load_memory()
     failed_keys = memory.get("failed_keys", [])

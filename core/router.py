@@ -60,7 +60,7 @@ FACTUAL, REALTIME, CREATIVE, CODE, REASONING, IMAGE_GEN, IMAGE_READ, SUMMARIZE, 
             for v in valid_labels:
                 if v in label.upper():
                     return v
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Router classification error: {e}")
         
     return "FACTUAL"

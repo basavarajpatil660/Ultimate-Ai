@@ -1,6 +1,7 @@
 import os
 import requests
 import time
+import urllib.parse
 
 def generate_image(prompt, 
                    CLOUDFLARE_WORKER_URL=None,
@@ -31,7 +32,6 @@ def generate_image(prompt,
 
     # Provider 2: Pollinations AI (no key needed)
     try:
-        import urllib.parse
         encoded_prompt = urllib.parse.quote(prompt)
         url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width=1024&height=1024&nologo=true&enhance=true"
         response = requests.get(url, timeout=90)

@@ -10,3 +10,4 @@ python-dotenv==1.0.0
 elevenlabs==1.2.0
 langdetect==1.0.9
 Pillow==10.3.0
+gTTS==2.5.1

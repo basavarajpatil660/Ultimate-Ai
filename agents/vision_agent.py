@@ -1,11 +1,18 @@
 import os
 import base64
 from google import genai as genai_client
+import groq
 
 def analyze_image(image_path, prompt, 
-                  GOOGLE_AI_KEY=os.environ.get("GOOGLE_AI_KEY"), 
-                  GROQ_API_KEY=os.environ.get("GROQ_API_KEY"),
-                  OPENROUTER_API_KEY=os.environ.get("OPENROUTER_API_KEY")):
+                  GOOGLE_AI_KEY=None, 
+                  GROQ_API_KEY=None,
+                  OPENROUTER_API_KEY=None):
+    if GOOGLE_AI_KEY is None:
+        GOOGLE_AI_KEY = os.environ.get("GOOGLE_AI_KEY")
+    if GROQ_API_KEY is None:
+        GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+    if OPENROUTER_API_KEY is None:
+        OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
     
     # Convert image to base64
     with open(image_path, "rb") as f:
@@ -34,7 +41,6 @@ def analyze_image(image_path, prompt,
     # Provider 2: Groq Vision
     if GROQ_API_KEY:
         try:
-            import groq
             client = groq.Groq(api_key=GROQ_API_KEY)
             response = client.chat.completions.create(
                 model="meta-llama/llama-4-scout-17b-16e-instruct",

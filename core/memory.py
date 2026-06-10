@@ -73,7 +73,6 @@ def should_skip_provider(provider):
     return False
 
 def reset_daily_budget(memory):
-    from datetime import datetime
     today = datetime.now().strftime("%Y-%m-%d")
     last_run = memory.get("last_run", "")
     if today not in str(last_run):

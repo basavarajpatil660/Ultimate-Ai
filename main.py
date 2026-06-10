@@ -32,6 +32,7 @@ def main():
         
         CLOUDFLARE_WORKER_URL = os.environ.get("CLOUDFLARE_WORKER_URL", None)
         PIXAZO_API_KEY = os.environ.get("PIXAZO_API_KEY", None)
+        ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY", None)
         
         if not prompt and mode == "auto":
             # Default tasks
@@ -105,7 +106,10 @@ def main():
                 res_text = call_llm(prompt)
                 if res_text:
                     text_str = res_text["result"]
-                    audio_res = text_to_speech(text_str)
+                    audio_res = text_to_speech(
+                        text_str,
+                        ELEVENLABS_API_KEY=ELEVENLABS_API_KEY
+                    )
                     if audio_res:
                         result_data = audio_res
                         provider_used = f"llm:{res_text['provider']}, voice:{audio_res['provider']}"

@@ -1,5 +1,6 @@
 import os
 import requests
+from gtts import gTTS
 
 def generate_voice(text, ELEVENLABS_API_KEY=None,
                    GOOGLE_AI_KEY=None):
@@ -36,7 +37,6 @@ def generate_voice(text, ELEVENLABS_API_KEY=None,
 
     # Provider 2: Google TTS via gTTS fallback
     try:
-        from gtts import gTTS
         tts = gTTS(text=text, lang='en')
         tts.save("/tmp/output.mp3")
         print("Voice generated via gTTS")

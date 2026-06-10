@@ -54,7 +54,6 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
-          pip install gTTS==2.5.1
 
       - name: Run Agent
         env:
@@ -70,7 +69,6 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GOOGLE_AI_KEY: ${{ secrets.GOOGLE_AI_KEY }}
           CLOUDFLARE_WORKER_URL: ${{ secrets.CLOUDFLARE_WORKER_URL }}
-          HUGGINGFACE_API_KEY: ${{ secrets.HUGGINGFACE_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
           JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
