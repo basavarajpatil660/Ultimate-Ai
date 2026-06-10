@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-10T13:10:42.683235",
-  "run_count_today": 8,
+  "last_run": "2026-06-10T13:12:14.570973",
+  "run_count_today": 9,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -34,6 +34,12 @@
       "type": "REASONING",
       "provider": "mistral",
       "time": "2026-06-10T13:10:55.775335"
+    },
+    {
+      "prompt": "A room has 4 people: Alice, Bob, Charlie, and David. Alice leaves the room and goes to the kitchen. Bob gives a red ball to Charlie. Charlie moves to the backyard and leaves the ball there. David walks to the kitchen and tells Alice that Charlie has a blue ball. Alice walks back into the initial room. Who does Alice think has the ball, what color does she think it is, and where is the physical ball actually located? Step-by-step logic only.",
+      "type": "REASONING",
+      "provider": "mistral",
+      "time": "2026-06-10T13:12:26.073213"
     }
   ],
   "budget": {
