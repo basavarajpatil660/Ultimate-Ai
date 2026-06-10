@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-10T13:05:11.798432",
-  "run_count_today": 7,
+  "last_run": "2026-06-10T13:10:42.683235",
+  "run_count_today": 8,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -28,6 +28,12 @@
       "type": "REASONING",
       "provider": "mistral",
       "time": "2026-06-10T13:05:21.550065"
+    },
+    {
+      "prompt": "You stated that the Secret Move overrides the Curse and triggers a complete game reset, but your original rules state that when a reset happens, the Hollow Hand 'remembers'.  If I immediately start a second game after this reset and lose the very first round, does the Hollow Hand's memory compound my previous 3 hidden losses? If yes, losing once after a reset would technically mean I have accumulated 4 losses, triggering a delayed Curse instantly. If no, what exactly does the figure 'remember' if the state counter is completely cleared to 0? Explain this memory storage mechanism without breaking the reset clause.",
+      "type": "REASONING",
+      "provider": "mistral",
+      "time": "2026-06-10T13:10:55.775335"
     }
   ],
   "budget": {
