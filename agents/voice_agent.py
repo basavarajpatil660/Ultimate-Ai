@@ -45,3 +45,5 @@ def generate_voice(text, ELEVENLABS_API_KEY=None,
         print(f"gTTS failed: {e}")
 
     return None
+
+text_to_speech = generate_voice
