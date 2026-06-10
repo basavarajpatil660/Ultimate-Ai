@@ -1,0 +1,19 @@
+{
+  "last_run": "2026-06-10T06:00:00",
+  "run_count_today": 3,
+  "provider_stats": {
+    "mistral": {"success": 12, "fail": 1},
+    "cerebras": {"success": 8, "fail": 0},
+    "groq": {"success": 5, "fail": 2}
+  },
+  "failed_keys": [],
+  "tasks_today": [],
+  "budget": {
+    "cerebras_tokens_used": 45000,
+    "groq_requests_used": 12,
+    "mistral_tokens_used": 120000,
+    "tavily_requests_used": 4
+  },
+  "last_content_idea": "",
+  "last_image_prompt": ""
+}
