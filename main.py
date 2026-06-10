@@ -30,6 +30,10 @@ def main():
         gmail = os.environ.get("GMAIL_ADDRESS")
         gmail_pw = os.environ.get("GMAIL_APP_PASSWORD")
         
+        HUGGINGFACE_API_KEY = os.environ.get("HUGGINGFACE_API_KEY", None)
+        CLOUDFLARE_WORKER_URL = os.environ.get("CLOUDFLARE_WORKER_URL", None)
+        PIXAZO_API_KEY = os.environ.get("PIXAZO_API_KEY", None)
+        
         if not prompt and mode == "auto":
             # Default tasks
             idea_res = call_llm("Generate one unique content idea for NickPlays YouTube channel (gaming/Crew Motorfest). Return only the idea.")
@@ -73,7 +77,12 @@ def main():
                     provider_used = res["provider"]
                     
             elif task_type == "IMAGE_GEN":
-                res = generate_image(prompt)
+                res = generate_image(
+                    prompt,
+                    CLOUDFLARE_WORKER_URL=CLOUDFLARE_WORKER_URL,
+                    HUGGINGFACE_API_KEY=HUGGINGFACE_API_KEY,
+                    PIXAZO_API_KEY=PIXAZO_API_KEY
+                )
                 if res:
                     result_data = res
                     provider_used = res["provider"]

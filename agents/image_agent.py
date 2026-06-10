@@ -1,102 +1,99 @@
 import os
 import requests
-import base64
-from core.fallback import call_with_fallback, ProviderError
+import time
 
-def generate_image(prompt):
-    provider_chain = [
-        {
-            'provider_name': 'cloudflare',
-            'api_key': os.environ.get("CLOUDFLARE_WORKER_URL"),
-            'model': 'worker',
-            'max_retries': 2,
-            'backoff_seconds': [2, 4]
-        },
-        {
-            'provider_name': 'together',
-            'api_key': os.environ.get("TOGETHER_API_KEY"),
-            'model': 'black-forest-labs/FLUX.1-schnell-Free',
-            'max_retries': 2,
-            'backoff_seconds': [2, 4]
-        },
-        {
-            'provider_name': 'pixazo',
-            'api_key': os.environ.get("PIXAZO_API_KEY"),
-            'model': 'flux-schnell',
-            'max_retries': 2,
-            'backoff_seconds': [2, 4]
-        }
-    ]
+def generate_image(prompt, CLOUDFLARE_WORKER_URL=None,
+                   HUGGINGFACE_API_KEY=None,
+                   PIXAZO_API_KEY=None):
+
+    # Truncate prompt to safe length
+    prompt = prompt[:500] if prompt else "abstract art"
     
-    def img_call_func(provider):
-        name = provider['provider_name']
-        api_key = provider['api_key'] 
-        model = provider['model']
-        
-        if name == 'cloudflare':
-            url = f"{api_key}/generate" if not str(api_key).endswith('/generate') else api_key
-            try:
-                resp = requests.post(url, json={"prompt": prompt, "enhance": True}, timeout=30)
-                if resp.status_code == 200:
-                    return resp.content 
-                else:
-                    raise ProviderError(resp.status_code, resp.text)
-            except requests.exceptions.RequestException as e:
-                raise ProviderError(500, str(e))
-                
-        elif name == 'together':
-            url = "https://api.together.xyz/v1/images/generations"
-            headers = {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
-            }
-            data = {
-                "model": model,
-                "prompt": prompt,
-                "steps": 4,
-                "n": 1
-            }
-            resp = requests.post(url, headers=headers, json=data, timeout=30)
-            if resp.status_code == 200:
-                b64_img = resp.json()['data'][0]['b64_json']
-                return base64.b64decode(b64_img)
-            else:
-                raise ProviderError(resp.status_code, resp.text)
-                
-        elif name == 'pixazo':
-            url = "https://api-console.pixazo.ai/v1/generate"
-            headers = {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json"
-            }
-            data = {
-                "model": model,
-                "prompt": prompt
-            }
-            resp = requests.post(url, headers=headers, json=data, timeout=30)
-            if resp.status_code == 200:
-                if 'application/json' in resp.headers.get('Content-Type', ''):
-                    try:
-                        b64_img = resp.json().get('image_base64', '')
-                        if b64_img:
-                            return base64.b64decode(b64_img)
-                    except Exception:
-                        pass
-                return resp.content
-            else:
-                raise ProviderError(resp.status_code, resp.text)
-
-    result = call_with_fallback(provider_chain, img_call_func)
-    if result and result.get("result"):
-        image_bytes = result["result"]
-        output_path = "/tmp/output.png"
+    # Provider 1: Cloudflare Worker
+    if CLOUDFLARE_WORKER_URL:
         try:
-            with open(output_path, "wb") as f:
-                f.write(image_bytes)
-            return {"path": output_path, "provider": result["provider"]}
-        except Exception:
-            # fallback if /tmp is not available locally or on specific runner
-            with open("output.png", "wb") as f:
-                f.write(image_bytes)
-            return {"path": "output.png", "provider": result["provider"]}
+            url = CLOUDFLARE_WORKER_URL.rstrip("/") + "/generate"
+            response = requests.post(
+                url,
+                json={"prompt": prompt, "enhance": True},
+                timeout=60
+            )
+            if response.status_code == 200:
+                with open("/tmp/output.png", "wb") as f:
+                    f.write(response.content)
+                print("Image generated via Cloudflare")
+                return {
+                    "file_path": "/tmp/output.png",
+                    "provider": "cloudflare"
+                }
+        except Exception as e:
+            print(f"Cloudflare image failed: {e}")
+
+    # Provider 2: Hugging Face FLUX
+    if HUGGINGFACE_API_KEY:
+        for attempt in range(3):
+            try:
+                response = requests.post(
+                    "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
+                    headers={
+                        "Authorization": f"Bearer {HUGGINGFACE_API_KEY}"
+                    },
+                    json={"inputs": prompt},
+                    timeout=60
+                )
+                if response.status_code == 200:
+                    with open("/tmp/output.png", "wb") as f:
+                        f.write(response.content)
+                    print("Image generated via HuggingFace")
+                    return {
+                        "file_path": "/tmp/output.png",
+                        "provider": "huggingface"
+                    }
+                elif response.status_code == 503:
+                    # Model loading, wait and retry
+                    wait = 10 * (attempt + 1)
+                    print(f"HF model loading, waiting {wait}s")
+                    time.sleep(wait)
+                else:
+                    print(f"HF failed: {response.status_code}")
+                    break
+            except Exception as e:
+                print(f"HuggingFace image failed: {e}")
+                break
+
+    # Provider 3: Pixazo
+    if PIXAZO_API_KEY:
+        try:
+            response = requests.post(
+                "https://api-console.pixazo.ai/v1/generate",
+                headers={
+                    "Authorization": f"Bearer {PIXAZO_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "prompt": prompt,
+                    "model": "flux-schnell"
+                },
+                timeout=60
+            )
+            if response.status_code == 200:
+                data = response.json()
+                img_url = data.get("image_url") or \
+                          data.get("url") or \
+                          data.get("output")
+                if img_url:
+                    img_response = requests.get(
+                        img_url, timeout=30)
+                    if img_response.status_code == 200:
+                        with open("/tmp/output.png", "wb") as f:
+                            f.write(img_response.content)
+                        print("Image generated via Pixazo")
+                        return {
+                            "file_path": "/tmp/output.png",
+                            "provider": "pixazo"
+                        }
+        except Exception as e:
+            print(f"Pixazo image failed: {e}")
+
+    print("All image providers failed")
     return None

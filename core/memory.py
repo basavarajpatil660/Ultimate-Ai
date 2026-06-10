@@ -25,18 +25,31 @@ DEFAULT_MEMORY = {
 }
 
 def load_memory():
-    if not os.path.exists(MEMORY_FILE):
-        return DEFAULT_MEMORY.copy()
+    default = {
+        "last_run": "",
+        "run_count_today": 0,
+        "provider_stats": {},
+        "failed_keys": [],
+        "tasks_today": [],
+        "budget": {
+            "cerebras_tokens_used": 0,
+            "groq_requests_used": 0,
+            "mistral_tokens_used": 0,
+            "tavily_requests_used": 0
+        },
+        "last_content_idea": "",
+        "last_image_prompt": ""
+    }
     try:
-        with open(MEMORY_FILE, 'r') as f:
+        with open("memory.json", "r") as f:
             data = json.load(f)
-            # Merge defaults
-            for k, v in DEFAULT_MEMORY.items():
-                if k not in data:
-                    data[k] = v
+            # Fill any missing keys with defaults
+            for key, value in default.items():
+                if key not in data:
+                    data[key] = value
             return data
     except Exception:
-        return DEFAULT_MEMORY.copy()
+        return default
 
 def save_memory(data):
     try:
@@ -63,7 +76,7 @@ def reset_daily_budget(memory):
     from datetime import datetime
     today = datetime.now().strftime("%Y-%m-%d")
     last_run = memory.get("last_run", "")
-    if today not in last_run:
+    if today not in str(last_run):
         memory["budget"] = {
             "cerebras_tokens_used": 0,
             "groq_requests_used": 0,
@@ -72,5 +85,6 @@ def reset_daily_budget(memory):
         }
         memory["run_count_today"] = 0
         memory["tasks_today"] = []
+        print(f"Daily budget reset for {today}")
     memory["last_run"] = datetime.now().isoformat()
     return memory
