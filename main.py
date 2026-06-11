@@ -122,12 +122,38 @@ def main():
                         
             if result_data:
                 formatted = format_output(result_data, task_type, provider_used)
-                if formatted["type"] == "text":
-                    send_text(telegram_token, chat_id, formatted["content"])
-                elif formatted["type"] == "image":
-                    send_image(telegram_token, chat_id, formatted["file_path"], formatted["caption"])
-                elif formatted["type"] == "audio":
-                    send_audio(telegram_token, chat_id, formatted["file_path"], formatted["caption"])
+                if formatted["type"] == "image" and \
+                   formatted.get("file_path") and \
+                   os.path.exists(formatted["file_path"]):
+                    send_image(
+                        telegram_token,
+                        chat_id,
+                        formatted["file_path"],
+                        formatted.get("caption", "")
+                    )
+                elif formatted["type"] == "image" and \
+                     not formatted.get("file_path"):
+                    send_text(
+                        telegram_token,
+                        chat_id,
+                        "Image generation failed: file not saved."
+                    )
+                elif formatted["type"] == "audio" and \
+                     formatted.get("file_path") and \
+                     os.path.exists(formatted["file_path"]):
+                    send_audio(
+                        telegram_token,
+                        chat_id,
+                        formatted["file_path"],
+                        formatted.get("caption", "")
+                    )
+                else:
+                    send_text(
+                        telegram_token,
+                        chat_id,
+                        formatted.get("content",
+                            "Task completed but no output.")
+                    )
                 
                 if provider_used == "mistral":
                     update_budget("mistral", 500)
