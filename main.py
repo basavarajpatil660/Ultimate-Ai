@@ -2,6 +2,7 @@ import os
 import sys
 import requests
 import traceback
+import re
 from datetime import datetime
 
 from core.memory import load_memory, save_memory, reset_daily_budget, update_budget
@@ -15,6 +16,7 @@ from agents.vision_agent import analyze_image
 from agents.search_agent import research_and_synthesize
 from agents.content_agent import generate_content
 from agents.voice_agent import text_to_speech
+from agents.image_agent import generate_image, edit_image
 
 def main():
     try:
@@ -57,7 +59,12 @@ def main():
         if prompt:
             # Process actual prompt
             has_image = False
-            task_type = classify_task(prompt, has_image)
+            if mode == "image_edit" and "[IMAGE_URL:" in prompt:
+                task_type = "IMAGE_EDIT"
+            elif mode == "image_read" and "[IMAGE_URL:" in prompt:
+                task_type = "IMAGE_READ"
+            else:
+                task_type = classify_task(prompt, has_image)
             lang = detect_language(prompt)
             
             if lang == "hindi/hinglish":
@@ -112,6 +119,39 @@ def main():
                                 res = analyze_image(image_path, prompt)
                                 if res:
                                     result_data = res["result"]
+                                    provider_used = res["provider"]
+                            else:
+                                result_data = "Image download failed - file not saved."
+                        else:
+                            result_data = f"Failed to download image: HTTP {img_response.status_code}"
+                    except Exception as e:
+                        result_data = f"Image download error: {str(e)}"
+                else:
+                    result_data = "No image URL found in prompt."
+                    
+            elif task_type == "IMAGE_EDIT":
+                url_match = re.search(r'\[IMAGE_URL:(.+?)\]', prompt)
+
+                if url_match:
+                    image_url = url_match.group(1)
+                    prompt = re.sub(r'\[IMAGE_URL:.+?\]', '', prompt).strip()
+
+                    try:
+                        img_response = requests.get(image_url, timeout=30)
+                        if img_response.status_code == 200:
+                            image_path = "/tmp/input.png"
+                            with open(image_path, 'wb') as f:
+                                f.write(img_response.content)
+
+                            if os.path.exists(image_path):
+                                res = edit_image(
+                                    image_path,
+                                    prompt,
+                                    CLOUDFLARE_WORKER_URL=CLOUDFLARE_WORKER_URL,
+                                    CLOUDFLARE_API_KEY=CLOUDFLARE_API_KEY
+                                )
+                                if res:
+                                    result_data = res
                                     provider_used = res["provider"]
                             else:
                                 result_data = "Image download failed - file not saved."
