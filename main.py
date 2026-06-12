@@ -89,14 +89,37 @@ def main():
                     provider_used = res["provider"]
                     
             elif task_type == "IMAGE_READ":
-                image_path = "/tmp/input.png" if os.path.exists("/tmp/input.png") else "input.png"
-                if os.path.exists(image_path):
-                    res = analyze_image(image_path, prompt)
-                    if res:
-                        result_data = res["result"]
-                        provider_used = res["provider"]
+                # Extract IMAGE_URL from prompt
+                import re
+                import requests
+                url_match = re.search(r'\[IMAGE_URL:(.+?)\]', prompt)
+                
+                if url_match:
+                    image_url = url_match.group(1)
+                    # Remove the [IMAGE_URL:...] tag from prompt
+                    prompt = re.sub(r'\[IMAGE_URL:.+?\]', '', prompt).strip()
+                    
+                    try:
+                        # Download image from URL
+                        img_response = requests.get(image_url, timeout=30)
+                        if img_response.status_code == 200:
+                            image_path = "/tmp/input.png"
+                            with open(image_path, 'wb') as f:
+                                f.write(img_response.content)
+                            
+                            if os.path.exists(image_path):
+                                res = analyze_image(image_path, prompt)
+                                if res:
+                                    result_data = res["result"]
+                                    provider_used = res["provider"]
+                            else:
+                                result_data = "Image download failed - file not saved."
+                        else:
+                            result_data = f"Failed to download image: HTTP {img_response.status_code}"
+                    except Exception as e:
+                        result_data = f"Image download error: {str(e)}"
                 else:
-                    result_data = "No image found to analyze."
+                    result_data = "No image URL found in prompt."
                     
             elif task_type == "CONTENT":
                 res = generate_content(prompt)
