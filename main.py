@@ -98,8 +98,7 @@ def main():
                     
             elif task_type == "IMAGE_READ":
                 # Extract IMAGE_URL from prompt
-                import re
-                import requests
+                
                 url_match = re.search(r'\[IMAGE_URL:(.+?)\]', prompt)
                 
                 if url_match:
