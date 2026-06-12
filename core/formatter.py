@@ -12,7 +12,7 @@ def format_output(result_data, task_type,
             "provider": provider_used
         }
     # IMAGE result
-    if task_type == "image_gen":
+    if task_type in ["image_gen", "image_edit"]:
         # result_data is a dict with file_path and provider
         if isinstance(result_data, dict):
             fp = result_data.get("file_path", None)
