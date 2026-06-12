@@ -159,3 +159,53 @@ def generate_image(
 
     print("All image providers failed")
     return None
+def edit_image(
+    image_path,
+    prompt,
+    CLOUDFLARE_WORKER_URL=None,
+    CLOUDFLARE_API_KEY=None
+):
+    import base64
+    prompt = prompt[:500] if prompt else "enhance this image"
+
+    if not CLOUDFLARE_WORKER_URL:
+        print("Cloudflare URL not set, cannot edit image")
+        return None
+
+    try:
+        with open(image_path, "rb") as f:
+            image_data = base64.b64encode(f.read()).decode("utf-8")
+
+        url = CLOUDFLARE_WORKER_URL.rstrip("/") + "/edit"
+        headers = {"Content-Type": "application/json"}
+        if CLOUDFLARE_API_KEY:
+            headers["Authorization"] = f"Bearer {CLOUDFLARE_API_KEY}"
+
+        response = requests.post(
+            url,
+            headers=headers,
+            json={"prompt": prompt, "image": image_data},
+            timeout=60
+        )
+        print(f"Cloudflare edit status: {response.status_code}")
+        if response.status_code == 200:
+            content = response.content
+            if len(content) > 1000:
+                with open("/tmp/output_edit.png", "wb") as f:
+                    f.write(content)
+                print("Image edited via Cloudflare FLUX.2 klein")
+                return {
+                    "file_path": "/tmp/output_edit.png",
+                    "provider": "cloudflare-flux2-klein"
+                }
+            else:
+                print(f"Edit returned too small: {len(content)} bytes")
+                print(f"Response text: {response.text[:200]}")
+        else:
+            print(f"Cloudflare edit error: {response.status_code}")
+            print(f"Response: {response.text[:200]}")
+    except Exception as e:
+        print(f"Cloudflare edit exception: {e}")
+
+    print("Image edit failed")
+    return None
