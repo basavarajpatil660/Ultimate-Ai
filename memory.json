@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-12T04:24:29.417782",
-  "run_count_today": 1,
+  "last_run": "2026-06-12T11:28:19.746073",
+  "run_count_today": 2,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -22,6 +22,12 @@
       "type": "REALTIME",
       "provider": "mistral",
       "time": "2026-06-12T04:24:45.082695"
+    },
+    {
+      "prompt": "What you see explain",
+      "type": "IMAGE_READ",
+      "provider": "unknown",
+      "time": "2026-06-12T11:28:23.104624"
     }
   ],
   "budget": {
