@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-13T07:31:50.480690",
-  "run_count_today": 8,
+  "last_run": "2026-06-13T12:22:45.912129",
+  "run_count_today": 9,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -64,6 +64,12 @@
       "type": "CREATIVE",
       "provider": "mistral",
       "time": "2026-06-13T07:31:58.100304"
+    },
+    {
+      "prompt": "Create a clean Instagram Story design in 9:16 vertical format, 1080x1920 px.\n\nStyle: minimal, premium, clean AI creator page aesthetic. White notebook/grid paper background with very faint blue grid lines, soft paper texture, subtle glow, dark navy typography, red/orange highlight accents, yellow brush-stroke highlight, and a few tiny abstract AI icons. No face, no personal photo, no logo needed.\n\nMain mood:\nA creator is returning after a short break. The story should feel honest, clean, and slightly dramatic, but not sad. It should say the account was suspended, uploads stopped for one week, and now the creator is back.\n\nAdd this exact text in large readable typography:\n\nTop small text:\n1 week no posts.\n\nMain headline:\nAccount suspend ho gaya tha.\n\nSecond line in red/orange:\nBut now I\u2019m back.\n\nYellow brush highlight text:\nNext week se reels + posts continue.\n\nBottom CTA:\nNext story dekho \u2192\n\nDesign details:\nKeep lots of empty space.\nUse a clean dark navy rounded pill near the bottom for \u201cNext story dekho \u2192\u201d.\nAdd a bold arrow pointing to the right side, suggesting the next story will show the carousel post.\nAdd 2 or 3 small floating elements only: warning icon, unlock/check icon, calendar icon, AI sparkle icon.\nUse subtle cyan glow and soft shadows.\nMake the text very clear and readable on mobile.\nNo clutter, no fake app UI, no random text, no watermark.\n\nNegative prompt:\nmessy design, too many icons, dark background, sad poster, aggressive warning design, unreadable text, misspelled text, random letters, fake Instagram UI, watermark, face, logo, low quality, cluttered layout.",
+      "type": "IMAGE_GEN",
+      "provider": "cloudflare",
+      "time": "2026-06-13T12:22:50.893334"
     }
   ],
   "budget": {
