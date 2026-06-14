@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-13T19:39:39.703407",
-  "run_count_today": 16,
+  "last_run": "2026-06-14T11:15:00.800594",
+  "run_count_today": 1,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -18,100 +18,10 @@
   "failed_keys": [],
   "tasks_today": [
     {
-      "prompt": "Give me best prompt to create a image",
-      "type": "IMAGE_GEN",
-      "provider": "cloudflare",
-      "time": "2026-06-13T01:01:24.602149"
-    },
-    {
-      "prompt": "make it look like oil painting",
-      "type": "IMAGE_EDIT",
-      "provider": "unknown",
-      "time": "2026-06-13T02:55:14.931618"
-    },
-    {
-      "prompt": "make it look like oil painting",
-      "type": "IMAGE_EDIT",
-      "provider": "cloudflare-flux2-klein",
-      "time": "2026-06-13T03:00:51.486300"
-    },
-    {
-      "prompt": "Create a image of a himalayas",
-      "type": "IMAGE_GEN",
-      "provider": "cloudflare",
-      "time": "2026-06-13T03:04:37.824522"
-    },
-    {
-      "prompt": "Extreme macro photography.\n\nA luxury mechanical wristwatch resting on a black marble table.\n\nThe watch face fills 90% of the image.\n\nEvery engraved number must be readable.\n\nEvery gear visible through the sapphire crystal must be distinct.\n\nTiny screws must be visible.\n\nTiny scratches on the metal surface.\n\nFingerprints on the crystal.\n\nDust particles.\n\nAccurate reflections.\n\nPerfect symmetry.\n\nTrue macro lens photography.\n\nNo blur.\n\nNo simplification.\n\nNo invented details.\n\nMaximum realism.\n\n100x zoom quality.",
-      "type": "IMAGE_GEN",
-      "provider": "cloudflare",
-      "time": "2026-06-13T03:05:40.760175"
-    },
-    {
-      "prompt": "/usetemplate",
-      "type": "CREATIVE",
-      "provider": "mistral",
-      "time": "2026-06-13T03:40:21.006878"
-    },
-    {
-      "prompt": "/listtemplates",
-      "type": "REALTIME",
-      "provider": "mistral",
-      "time": "2026-06-13T03:44:44.436059"
-    },
-    {
-      "prompt": "/save_template",
-      "type": "CREATIVE",
-      "provider": "mistral",
-      "time": "2026-06-13T07:31:58.100304"
-    },
-    {
-      "prompt": "Create a clean Instagram Story design in 9:16 vertical format, 1080x1920 px.\n\nStyle: minimal, premium, clean AI creator page aesthetic. White notebook/grid paper background with very faint blue grid lines, soft paper texture, subtle glow, dark navy typography, red/orange highlight accents, yellow brush-stroke highlight, and a few tiny abstract AI icons. No face, no personal photo, no logo needed.\n\nMain mood:\nA creator is returning after a short break. The story should feel honest, clean, and slightly dramatic, but not sad. It should say the account was suspended, uploads stopped for one week, and now the creator is back.\n\nAdd this exact text in large readable typography:\n\nTop small text:\n1 week no posts.\n\nMain headline:\nAccount suspend ho gaya tha.\n\nSecond line in red/orange:\nBut now I\u2019m back.\n\nYellow brush highlight text:\nNext week se reels + posts continue.\n\nBottom CTA:\nNext story dekho \u2192\n\nDesign details:\nKeep lots of empty space.\nUse a clean dark navy rounded pill near the bottom for \u201cNext story dekho \u2192\u201d.\nAdd a bold arrow pointing to the right side, suggesting the next story will show the carousel post.\nAdd 2 or 3 small floating elements only: warning icon, unlock/check icon, calendar icon, AI sparkle icon.\nUse subtle cyan glow and soft shadows.\nMake the text very clear and readable on mobile.\nNo clutter, no fake app UI, no random text, no watermark.\n\nNegative prompt:\nmessy design, too many icons, dark background, sad poster, aggressive warning design, unreadable text, misspelled text, random letters, fake Instagram UI, watermark, face, logo, low quality, cluttered layout.",
-      "type": "IMAGE_GEN",
-      "provider": "cloudflare",
-      "time": "2026-06-13T12:22:50.893334"
-    },
-    {
-      "prompt": "Create a clean premium Instagram Story design in 9:16 vertical format, 1080x1920 px.\n\nStyle:\nModern AI creator page aesthetic, clean white notebook paper background, faint blue grid lines, subtle paper texture, torn notebook edge on the left, soft cyan glow, dark navy bold typography, red-orange comeback accent, yellow brush-stroke highlight, minimal 3D icons, premium Instagram story design.\n\nMood:\nHonest comeback announcement. The account was inactive because it got suspended, but now the creator is back. The story should feel clean, confident, slightly dramatic, and exciting. Not sad, not messy, not corporate.\n\nMain text hierarchy:\nAdd this exact text, large and readable:\n\nTop small pill:\n1 week offline.\n\nMain headline:\nAccount suspend\nho gaya tha.\n\nRed/orange comeback line:\nBut I\u2019m back.\n\nYellow brush highlight:\nNext week se reels + posts regular.\n\nBottom CTA pill:\nNext story dekho \u2192\n\nDesign layout:\nTop 15%:\nPlace a small rounded white pill with soft shadow that says \u201c1 week offline.\u201d\n\nCenter 45%:\nMake the main headline huge, bold, dark navy:\n\u201cAccount suspend\nho gaya tha.\u201d\nKeep it centered and very readable.\n\nBelow headline:\nAdd \u201cBut I\u2019m back.\u201d in bold red-orange, slightly smaller than the headline but still powerful.\n\nBelow that:\nAdd a yellow brush-stroke highlight with black bold text:\n\u201cNext week se reels + posts regular.\u201d\n\nBottom 20%:\nAdd a dark navy rounded pill button with white text:\n\u201cNext story dekho \u2192\u201d\nPlace a bold hand-drawn arrow pointing right, suggesting the next story will show the new post/carousel.\n\nVisual elements:\nUse only 4 clean 3D-style icons:\n- warning triangle near top-left\n- unlocked padlock with check near top-right\n- calendar icon near lower-left\n- blue AI sparkle near lower-right\n\nAdd very subtle glow behind the icons.\nKeep icons secondary; text must be the hero.\nAdd tiny cyan accent strokes around icons.\nUse lots of clean spacing.\n\nTypography:\nUse bold modern condensed sans-serif style like Anton, Bebas Neue, or Poppins ExtraBold.\nDark navy for main headline.\nRed-orange for \u201cBut I\u2019m back.\u201d\nBlack text on yellow brush highlight.\nWhite text inside dark navy CTA pill.\n\nImportant:\nMake the text perfectly spelled and readable.\nDo not add extra text.\nDo not add a face, logo, Instagram UI, watermark, username, fake notification, or random letters.\nDo not make it crowded.\nDo not use a dark background.\nKeep it clean, premium, bright, and creator-style.\n\nNegative prompt:\nmisspelled text, unreadable text, extra words, cluttered design, too many icons, sad poster, dark background, fake Instagram interface, username, watermark, messy arrows, low-quality typography, random letters, distorted icons, corporate notice design, boring layout.",
-      "type": "IMAGE_GEN",
-      "provider": "cloudflare",
-      "time": "2026-06-13T12:26:08.987078"
-    },
-    {
-      "prompt": "Change nothing just make this image for insta post 1.1 format all right just do this nothing else",
+      "prompt": "My insta account got suspended",
       "type": "IMAGE_READ",
       "provider": "groq-vision",
-      "time": "2026-06-13T13:46:04.573635"
-    },
-    {
-      "prompt": "Change nothing just make this image for insta post 1.1 format all right just do this nothing else",
-      "type": "IMAGE_EDIT",
-      "provider": "cloudflare-flux2-klein",
-      "time": "2026-06-13T13:48:05.906979"
-    },
-    {
-      "prompt": "a sunset over mountains",
-      "type": "CREATIVE",
-      "provider": "mistral",
-      "time": "2026-06-13T19:34:52.489165"
-    },
-    {
-      "prompt": "Create \nA sunset over mountains is one of nature\u2019s most breathtaking sights\u2014where the sky ignites in warm hues of gold, pink, and purple, casting a soft glow over rugged peaks. Here\u2019s a vivid description to help you visualize or capture the moment:\n\n### The Scene:\n- The Sky: A canvas of fiery oranges, deep magentas, and soft lavenders, blending seamlessly as the sun dips behind the horizon. Clouds may streak like brushstrokes, catching the last light.\n- The Mountains: Silhouetted in deep indigo or black, their jagged edges sharp against the fading light. Snow-capped peaks might glow pink, while lower slopes fade into shadow.\n- The Light: A golden hour glow bathes the landscape, turning rocks and trees into warm, textured shapes. Shadows stretch long and dramatic.\n- The Air: Crisp and still, with a hint of coolness as day gives way to night. The scent of pine or damp earth lingers.\n\n### Emotional Impact:\n- Serenity: The quiet majesty of the scene invites reflection, a moment of stillness before darkness falls.\n- Awe: The contrast of light and shadow, the vastness of the sky, and the permanence of the mountains evoke humility.\n- Nostalgia: Sunsets feel like endings\u2014of a day, a journey, or a chapter\u2014yet promise renewal with the dawn.\n\n### Tips to Capture It (Photography):\n1. Timing: Arrive early to scout your spot. The best light happens 20\u201330 minutes before sunset and lingers 10\u201315 minutes after.\n2. Composition:\n   - Use the rule of thirds\u2014place the horizon low to emphasize the sky or high to highlight the mountains.\n   - Include foreground elements (trees, rocks, a lake) to add depth.\n   - Shoot in silhouette for dramatic contrast or use a long exposure to smooth water or clouds.\n3. Settings:\n   - Aperture: f/8\u2013f/16 for sharpness (smaller aperture = more depth of field).\n   - ISO: Keep it low (100\u2013400) to avoid noise.\n   - White Balance: Try \"Cloudy\" or \"Shade\" to enhance warm tones.\n4. Post-Processing: Boost contrast, vibrance, and shadows slightly to enhance the natural colors.\n\n### Poetic Inspiration:\n\"The mountains stood like ancient sentinels,\nas the sun, a molten coin, slipped from their grasp.\nThe sky, once a roaring fire, softened to embers,\nand the world held its breath\u2014\nwaiting for the stars to take their turn.\"",
-      "type": "CREATIVE",
-      "provider": "mistral",
-      "time": "2026-06-13T19:36:26.879200"
-    },
-    {
-      "prompt": "Now Give me the this all in an Prompt Format",
-      "type": "CREATIVE",
-      "provider": "mistral",
-      "time": "2026-06-13T19:37:37.887268"
-    },
-    {
-      "prompt": "Create a image of\n### 1. Lyrical Prose: \"The Mountain\u2019s Last Breath\"\nThe sun does not surrender here\u2014it unfurls. A slow, deliberate retreat, as if the sky were a scroll painted by some celestial hand, dipped in molten gold and crushed amethyst. The clouds, those lazy sentinels, stretch and yawn, catching the light like embers on silk. They burn\u2014oh, how they burn\u2014first in searing orange, then softening to rose, to the bruised purple of a lover\u2019s kiss, before dissolving into the indigo throat of night.\n\nBelow, the mountains stand unyielding. Their peaks, jagged as broken promises, drink in the last warmth, their snowcaps blushing like shy brides. The lower slopes fade into shadow, but not before the light lingers on a lone pine, its needles gilded, or a boulder split by time, its edges sharp enough to cut the dusk. The air is thick with the scent of resin and damp earth, the kind of quiet that hums in your bones.\n\nAnd then\u2014the hush. The moment the sun dips below the ridge, and the world exhales. The colors deepen, as if the sky has swallowed a jewel and is now digesting its fire. The first stars prick through, tentative, like a question: Will you remember this? The mountains, now mere silhouettes, answer in silence. They have seen a thousand sunsets. They will see a thousand more. But you? You will carry this one in your chest, a small, bright ache, long after the dark has claimed the valley.\n\n---\n\n### 2. Haiku: \"Peak and Sky\"\nGold bleeds into stone\u2014\nthe mountain holds the sun\u2019s last sigh\nbefore the stars wake.\n\n---\n\n### 3. Short Poem: \"Ode to the Dying Light\"\nThe sun does not fall\u2014\nit spills, a slow catastrophe\nof honey and rust,\ndrowning the peaks in its own glow.\n\nThe mountains, those old gods,\ndo not weep. They remember:\nhow the light once filled their cracks,\nhow it gilded their wounds,\nhow it made them beautiful\nbefore the dark came to claim them.\n\nAnd when the last ember cools,\nwhen the sky is a bruise\nand the wind carries the scent of snow,\nthey will still be here\u2014\npatient, eternal\u2014\nwaiting for the dawn.\n\n---\n\n### 4. Photography Checklist: \"Chasing the Golden Hour\"\nBefore You Go:\n\u2705 Research the location (elevation, best vantage points, weather).\n\u2705 Check sunset time (use apps like PhotoPills or The Photographer\u2019s Ephemeris).\n\u2705 Pack: Tripod, ND filters (for long exposures), lens cloth, remote shutter, extra batteries.\n\u2705 Dress in layers\u2014mountain air cools quickly.\n\nOn Location:\n\ud83d\udccd Composition:\n- Leading lines: Use rivers, trails, or ridges to draw the eye.\n- Foreground interest: A lone tree, a boulder, or a lake reflection adds depth.\n- Negative space: Let the sky dominate for drama.\n- Silhouettes: Shoot against the brightest part of the sky for stark contrast.\n\n\ud83d\udcf8 Camera Settings:\n- Mode: Aperture Priority (Av/A) or Manual.\n- Aperture: f/8\u2013f/16 (for sharpness; smaller aperture = more depth).\n- ISO: 100\u2013400 (keep it low to avoid noise).\n- Shutter Speed: 1/60s or faster (unless using a tripod for long exposures).\n- White Balance: Cloudy or Shade (to enhance warmth).\n- Focus: Manual or single-point AF on a high-contrast edge (e.g., a mountain peak).\n\n\ud83c\udf05 Pro Tips:\n- Bracket exposures: Take 3 shots (underexposed, normal, overexposed) to blend later.\n- Shoot RAW: More flexibility in post-processing.\n- Capture the \"blue hour\": The 20\u201330 minutes after sunset when the sky turns deep blue.\n- Look behind you: The light on the opposite horizon can be just as stunning.\n\nPost-Processing:\n- Adjust contrast and clarity to make the colors pop.\n- Boost shadows and whites to reveal hidden details.\n- Use graduated filters to balance the sky and land\n[6/14/2026 1:08 AM] Nick's Ultimate Ai Agent Bot: .\n- Enhance vibrance (not saturation) to keep colors natural.\n\n---\n\n### 5. Writing Prompt: \"The Mountain\u2019s Secret\"\nThe mountains have stood for millennia, watching sunsets come and go. What secret do they keep as the light fades?",
-      "type": "IMAGE_GEN",
-      "provider": "cloudflare",
-      "time": "2026-06-13T19:39:45.209640"
+      "time": "2026-06-14T11:15:03.425407"
     }
   ],
   "budget": {
