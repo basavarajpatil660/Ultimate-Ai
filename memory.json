@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-14T11:23:47.708025",
-  "run_count_today": 3,
+  "last_run": "2026-06-14T11:53:29.230465",
+  "run_count_today": 4,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -34,6 +34,12 @@
       "type": "CREATIVE",
       "provider": "mistral",
       "time": "2026-06-14T11:24:05.607441"
+    },
+    {
+      "prompt": "How much billon parameter model your?",
+      "type": "FACTUAL",
+      "provider": "mistral",
+      "time": "2026-06-14T11:53:37.708378"
     }
   ],
   "budget": {
