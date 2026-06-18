@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-18T12:24:09.516128",
-  "run_count_today": 1,
+  "last_run": "2026-06-18T13:50:03.818525",
+  "run_count_today": 2,
   "provider_stats": {
     "mistral": {
       "success": 12,
@@ -22,6 +22,12 @@
       "type": "FACTUAL",
       "provider": "mistral",
       "time": "2026-06-18T12:24:11.561050"
+    },
+    {
+      "prompt": "Is it an ai generated image please check and tell me",
+      "type": "IMAGE_READ",
+      "provider": "groq-vision",
+      "time": "2026-06-18T13:50:07.641102"
     }
   ],
   "budget": {
