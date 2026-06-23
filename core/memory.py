@@ -202,3 +202,55 @@ def build_system_prompt_context() -> str:
 
     lines.append("=== YOUR TASK ===")
     return "\n".join(lines)
+
+# ─── Backwards-compatible wrappers (for main.py) ─────────────
+# These match the old function names so main.py needs zero changes.
+
+def load_memory() -> dict:
+    """Old name → load_state()"""
+    return load_state()
+
+def save_memory(state: dict) -> bool:
+    """Old name → save_state()"""
+    return save_state(state)
+
+def reset_daily_budget(state: dict) -> dict:
+    """
+    Resets daily counters if last_run was a different day.
+    Keeps provider_stats cumulative, resets tasks_today.
+    """
+    now = datetime.now(timezone.utc)
+    last = state.get("last_run")
+    if last:
+        try:
+            last_dt = datetime.fromisoformat(last)
+            if last_dt.tzinfo is None:
+                last_dt = last_dt.replace(tzinfo=timezone.utc)
+            if last_dt.date() < now.date():
+                state["run_count_today"] = 0
+                state["tasks_today"] = []
+                state["budget"] = {
+                    "cerebras_tokens_used": 0,
+                    "groq_requests_used": 0,
+                    "mistral_tokens_used": 0,
+                    "tavily_requests_used": 0
+                }
+        except Exception:
+            pass
+    return state
+
+def update_budget(provider: str, amount: int) -> None:
+    """Update token/request budget for a provider in KV."""
+    state = load_state()
+    budget = state.get("budget", {})
+    key_map = {
+        "mistral":  "mistral_tokens_used",
+        "cerebras": "cerebras_tokens_used",
+        "groq":     "groq_requests_used",
+        "tavily":   "tavily_requests_used"
+    }
+    k = key_map.get(provider)
+    if k:
+        budget[k] = budget.get(k, 0) + amount
+        state["budget"] = budget
+        save_state(state)
