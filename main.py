@@ -245,7 +245,13 @@ def main():
         telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN")
         chat_id = os.environ.get("TELEGRAM_CHAT_ID")
         error_msg = f"Agent Crash:\n{traceback.format_exc()}"
-        send_alert(telegram_token, chat_id, error_msg[:4000])
+        print("=== AGENT CRASH ===")
+        print(error_msg)
+        print("===================")
+        try:
+            send_alert(telegram_token, chat_id, error_msg[:4000])
+        except Exception as alert_err:
+            print(f"send_alert also failed: {alert_err}")
         sys.exit(1)
 
 
