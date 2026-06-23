@@ -3,17 +3,28 @@ import requests
 import json
 from google import genai as genai_client
 from core.fallback import call_with_fallback, ProviderError
+from core.memory import build_system_prompt_context, save_message
 
 def call_llm(prompt, system_prompt="", truncate=True):
+    # ── Inject user profile + 5-min conversation context ──
+    context_header = build_system_prompt_context()
+    if system_prompt:
+        system_prompt = context_header + system_prompt
+    else:
+        system_prompt = context_header
+
     if truncate:
         prompt = prompt[:4000]
-        system_prompt = system_prompt[:4000]
-        
+        system_prompt = system_prompt[:6000]  # slightly larger to fit context
+
+    # Save user message to conversation history
+    save_message("user", prompt)
+
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
     messages.append({"role": "user", "content": prompt})
-    
+
     provider_chain = [
         {
             'provider_name': 'mistral',
@@ -51,17 +62,16 @@ def call_llm(prompt, system_prompt="", truncate=True):
             'backoff_seconds': [2, 4, 8]
         }
     ]
-    
+
     def llm_call_func(provider):
-        name = provider['provider_name']
+        name    = provider['provider_name']
         api_key = provider['api_key']
-        model = provider['model']
-        
+        model   = provider['model']
+
         if name == 'google':
             if not api_key:
                 raise ProviderError(401, "No Google API key")
-            _google_client = genai_client.Client(
-                api_key=api_key)
+            _google_client = genai_client.Client(api_key=api_key)
             try:
                 full_prompt = system_prompt + "\n\n" + prompt if system_prompt else prompt
                 response = _google_client.models.generate_content(
@@ -77,12 +87,12 @@ def call_llm(prompt, system_prompt="", truncate=True):
                     raise ProviderError(401, str(e))
                 else:
                     raise ProviderError(500, str(e))
-                    
+
         else:
             endpoints = {
-                'mistral': "https://api.mistral.ai/v1/chat/completions",
-                'cerebras': "https://api.cerebras.ai/v1/chat/completions",
-                'groq': "https://api.groq.com/openai/v1/chat/completions",
+                'mistral':    "https://api.mistral.ai/v1/chat/completions",
+                'cerebras':   "https://api.cerebras.ai/v1/chat/completions",
+                'groq':       "https://api.groq.com/openai/v1/chat/completions",
                 'openrouter': "https://openrouter.ai/api/v1/chat/completions"
             }
             url = endpoints[name]
@@ -92,13 +102,13 @@ def call_llm(prompt, system_prompt="", truncate=True):
             }
             if name == 'openrouter':
                 headers["HTTP-Referer"] = "https://github.com/ultimate-ai-agent"
-                
+
             data = {
                 "model": model,
                 "messages": messages,
                 "temperature": 0.7
             }
-            
+
             resp = requests.post(url, headers=headers, json=data, timeout=30)
             if resp.status_code == 200:
                 try:
@@ -108,9 +118,19 @@ def call_llm(prompt, system_prompt="", truncate=True):
             else:
                 raise ProviderError(resp.status_code, resp.text)
 
-    return call_with_fallback(provider_chain, llm_call_func)
+    result = call_with_fallback(provider_chain, llm_call_func)
+
+    # Save assistant reply to conversation history
+    if result:
+        save_message("assistant", result)
+
+    return result
+
 
 def call_gemma4(prompt):
+    # Also save to conversation for context continuity
+    save_message("user", prompt)
+
     provider_chain = [
         {
             'provider_name': 'openrouter',
@@ -127,17 +147,16 @@ def call_gemma4(prompt):
             'backoff_seconds': [3, 6, 12]
         }
     ]
-    
+
     def gemma_call_func(provider):
-        name = provider['provider_name']
+        name    = provider['provider_name']
         api_key = provider['api_key']
-        model = provider['model']
-        
+        model   = provider['model']
+
         if name == 'google':
             if not api_key:
                 raise ProviderError(401, "No Google API key")
-            _google_client = genai_client.Client(
-                api_key=api_key)
+            _google_client = genai_client.Client(api_key=api_key)
             try:
                 response = _google_client.models.generate_content(
                     model="gemini-2.5-flash",
@@ -166,8 +185,10 @@ def call_gemma4(prompt):
             }
             resp = requests.post(url, headers=headers, json=data, timeout=30)
             if resp.status_code == 200:
-                return resp.json()['choices'][0]['message']['content']
+                result = resp.json()['choices'][0]['message']['content']
+                save_message("assistant", result)
+                return result
             else:
                 raise ProviderError(resp.status_code, resp.text)
-                
+
     return call_with_fallback(provider_chain, gemma_call_func)
