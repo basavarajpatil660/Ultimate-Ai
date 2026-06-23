@@ -130,7 +130,7 @@ def save_message(role: str, content: str) -> bool:
         history = []
     history.append({
         "role": role,
-        "content": content[:1000],
+        "content": str(content)[:1000],
         "timestamp": datetime.now(timezone.utc).isoformat()
     })
     history = history[-20:]
