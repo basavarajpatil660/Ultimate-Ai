@@ -56,17 +56,17 @@ jobs:
           CLOUDFLARE_WORKER_URL: ${{ secrets.CLOUDFLARE_WORKER_URL }}
           DASHBOARD_API_KEY: ${{ secrets.DASHBOARD_API_KEY }}
         run: |
-          python -c "
-          import os, requests
-          url = os.environ['CLOUDFLARE_WORKER_URL'].rstrip('/').replace('/generate','')
-          key = os.environ['DASHBOARD_API_KEY']
-          print('Worker URL:', url)
-          print('Key length:', len(key))
-          print('Key first 4 chars:', key[:4])
-          r = requests.get(url + '/api/kv?key=test', headers={'X-Dashboard-Key': key}, timeout=10)
-          print('KV test status:', r.status_code)
-          print('KV response:', r.text[:300])
-          "
+          python << 'PYEOF'
+import os, requests
+url = os.environ['CLOUDFLARE_WORKER_URL'].rstrip('/').replace('/generate','')
+key = os.environ['DASHBOARD_API_KEY']
+print('Worker URL:', url)
+print('Key length:', len(key))
+print('Key first 4 chars:', key[:4])
+r = requests.get(url + '/api/kv?key=test', headers={'X-Dashboard-Key': key}, timeout=10)
+print('KV test status:', r.status_code)
+print('KV response:', r.text[:300])
+PYEOF
       - name: Run Agent
         env:
           INPUT_PROMPT: ${{ github.event.inputs.prompt }}
