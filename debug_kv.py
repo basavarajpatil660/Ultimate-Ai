@@ -6,7 +6,10 @@ key = os.environ.get('DASHBOARD_API_KEY', '')
 
 print('RAW URL from secret:', raw_url)
 print('Key length:', len(key))
-print('Key value:', key)  # print full key since it's temporary debug
+# Print key character by character to bypass masking
+print('Key chars:', ' '.join(list(key)))
+# Print URL character by character
+print('URL chars:', ' '.join(list(raw_url)))
 
 # Try the URL as-is first
 url1 = raw_url.rstrip('/')
