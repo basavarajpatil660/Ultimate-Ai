@@ -525,16 +525,18 @@ Go to your repo → **Settings → Secrets and variables → Actions** and add:
 
 <div align="center">
 
-**[Your Name]**
+**Basavaraj M Patil (Nick)**
 
-📍 [Your Location] &nbsp;|&nbsp; 🎓 [Your Role/Title]
+📍 Karnataka, India &nbsp;|&nbsp; 🎓 CS Diploma Student &nbsp;|&nbsp; 📱 Developer
 
-*Add your own bio here.*
+*Built this entire system on a phone using Antigravity (Gemini) + Claude — no PC, no local IDE, no paid tools.*
 
 <br/>
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Your_Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
-[![GitHub](https://img.shields.io/badge/GitHub-Your_Username-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-itsbasavarajmp-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/itsbasavarajmp)
+[![GitHub](https://img.shields.io/badge/GitHub-basavarajpatil660-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/basavarajpatil660)
+[![Instagram](https://img.shields.io/badge/Instagram-basavaraj__nick-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/basavaraj_nick)
+[![YouTube](https://img.shields.io/badge/YouTube-NickPlays-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com)
 
 </div>
 
