@@ -529,7 +529,7 @@ Go to your repo → **Settings → Secrets and variables → Actions** and add:
 
 📍 Karnataka, India &nbsp;|&nbsp; 🎓 CS Diploma Student &nbsp;|&nbsp; 📱 Developer
 
-*Built this entire system on a phone using Antigravity (Gemini) + Claude — no PC, no local IDE, no paid tools.*
+*Built this entire system on PC.*
 
 <br/>
 
