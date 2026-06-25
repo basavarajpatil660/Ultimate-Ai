@@ -101,7 +101,7 @@ def call_llm(prompt, system_prompt="", truncate=True):
                 "Content-Type": "application/json"
             }
             if name == 'openrouter':
-                headers["HTTP-Referer"] = "https://github.com/ultimate-ai-agent"
+                headers["HTTP-Referer"] = os.environ.get("OPENROUTER_REFERER", "https://github.com/ultimate-ai-agent")
 
             data = {
                 "model": model,
@@ -176,7 +176,7 @@ def call_gemma4(prompt):
             headers = {
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
-                "HTTP-Referer": "https://github.com/ultimate-ai-agent"
+                "HTTP-Referer": os.environ.get("OPENROUTER_REFERER", "https://github.com/ultimate-ai-agent")
             }
             data = {
                 "model": model,

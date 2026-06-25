@@ -11,8 +11,7 @@ def generate_image(
 ):
     prompt = prompt[:500] if prompt else "abstract art"
 
-    # Provider 1: Cloudflare image-api worker (hardcoded URL)
-    IMAGE_WORKER_URL = "https://image-api.basavarajapatil660.workers.dev"
+    IMAGE_WORKER_URL = CLOUDFLARE_WORKER_URL or os.environ.get("CLOUDFLARE_WORKER_URL")
     try:
         url = IMAGE_WORKER_URL + "/generate"
         headers = {"Content-Type": "application/json"}
@@ -95,7 +94,7 @@ def edit_image(
     import base64
     prompt = prompt[:500] if prompt else "enhance this image"
 
-    IMAGE_WORKER_URL = "https://image-api.basavarajapatil660.workers.dev"
+    IMAGE_WORKER_URL = CLOUDFLARE_WORKER_URL or os.environ.get("CLOUDFLARE_WORKER_URL")
 
     try:
         with open(image_path, "rb") as f:
