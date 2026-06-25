@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a1a2e,100:16213e&height=200&section=header&text=Nick's%20Ultimate%20AI%20Agent&fontSize=42&fontColor=58a6ff&animation=fadeIn&fontAlignY=38&desc=Serverless%20%E2%80%A2%20Free%20Tier%20%E2%80%A2%20Telegram-Controlled%20%E2%80%A2%20Multi-Agent%20AI%20System&descAlignY=58&descSize=16&descColor=8b949e"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a1a2e,100:16213e&height=200&section=header&text=Ultimate%20AI%20Agent&fontSize=42&fontColor=58a6ff&animation=fadeIn&fontAlignY=38&desc=Serverless%20%E2%80%A2%20Free%20Tier%20%E2%80%A2%20Telegram-Controlled%20%E2%80%A2%20Multi-Agent%20AI%20System&descAlignY=58&descSize=16&descColor=8b949e"/>
 
 <br/>
 
@@ -130,7 +130,7 @@ flowchart TD
 | `/image <prompt>` | Generate AI image using FLUX | `/image a cyberpunk city at night` |
 | `/image_edit <prompt>` + photo | Edit your photo with AI | `/image_edit make it look like sunset` |
 | `/image_read <question>` + photo | Analyze any image | `/image_read what's in this photo` |
-| `/voice <text>` | Convert text to speech audio | `/voice good morning Nick` |
+| `/voice <text>` | Convert text to speech audio | `/voice good morning` |
 | `/research <query>` | Live web search + AI summary | `/research latest AI news today` |
 | `/content <topic>` | Social media caption generator | `/content Minecraft survival tips` |
 | Just type anything | Auto mode — agent decides | `what is quantum computing` |
@@ -368,7 +368,36 @@ The agent runs automatically at these times (IST) without any input:
 1:00 AM  →  Night briefing
 ```
 
-In auto mode it generates a **NickPlays YouTube content idea** + **AI news briefing** and sends directly to Telegram.
+In auto mode it generates a **YouTube content idea** + **AI news briefing** and sends directly to Telegram.
+
+---
+
+## 🔒 Security & Privacy
+
+> [!WARNING]
+> **Never commit your `.env` file or hardcode keys into the repository!**
+
+All sensitive values have been removed from this public template. To run the agent, you must set the following environment variables (e.g. in GitHub Secrets and your Cloudflare Worker environment).
+
+**Required Environment Variables (Example `.env`):**
+```env
+TELEGRAM_BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN_HERE
+TELEGRAM_CHAT_ID=YOUR_TELEGRAM_CHAT_ID_HERE
+CLOUDFLARE_WORKER_URL=YOUR_CLOUDFLARE_WORKER_URL_HERE
+CLOUDFLARE_API_KEY=YOUR_CLOUDFLARE_API_KEY_HERE
+DASHBOARD_API_KEY=YOUR_DASHBOARD_API_KEY_HERE
+MISTRAL_API_KEY=YOUR_MISTRAL_API_KEY_HERE
+CEREBRAS_API_KEY=YOUR_CEREBRAS_API_KEY_HERE
+GROQ_API_KEY=YOUR_GROQ_API_KEY_HERE
+OPENROUTER_API_KEY=YOUR_OPENROUTER_API_KEY_HERE
+GOOGLE_AI_KEY=YOUR_GOOGLE_AI_KEY_HERE
+ELEVENLABS_API_KEY=YOUR_ELEVENLABS_API_KEY_HERE
+TAVILY_API_KEY=YOUR_TAVILY_API_KEY_HERE
+JINA_API_KEY=YOUR_JINA_API_KEY_HERE
+GMAIL_ADDRESS=YOUR_GMAIL_ADDRESS_HERE
+GMAIL_APP_PASSWORD=YOUR_GMAIL_APP_PASSWORD_HERE
+```
+*Note: The memory (`user_profile` etc.) is stored privately in Cloudflare KV, meaning user data won't leak in the code.*
 
 ---
 
@@ -496,18 +525,16 @@ Go to your repo → **Settings → Secrets and variables → Actions** and add:
 
 <div align="center">
 
-**Basavaraj M Patil (Nick)**
+**[Your Name]**
 
-📍 Hubballi, Karnataka, India &nbsp;|&nbsp; 🎓 CS Diploma Student &nbsp;|&nbsp; 📱 Mobile-only developer
+📍 [Your Location] &nbsp;|&nbsp; 🎓 [Your Role/Title]
 
-*Built this entire system on a phone using Antigravity (Gemini) + Claude — no PC, no local IDE, no paid tools.*
+*Add your own bio here.*
 
 <br/>
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-itsbasavarajmp-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/itsbasavarajmp)
-[![GitHub](https://img.shields.io/badge/GitHub-basavarajpatil660-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/basavarajpatil660)
-[![Instagram](https://img.shields.io/badge/Instagram-basavaraj__nick-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/basavaraj_nick)
-[![YouTube](https://img.shields.io/badge/YouTube-NickPlays-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Your_Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Your_Username-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com)
 
 </div>
 

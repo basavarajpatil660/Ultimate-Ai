@@ -11,19 +11,18 @@ from datetime import datetime, timezone
 CONTEXT_WINDOW_SECONDS = 300  # 5 minutes
 
 USER_PROFILE = {
-    "name": "Nick (Basavaraj M Patil)",
-    "location": "Hubballi, Karnataka, India",
-    "style": "casual, calls people 'brother', sends voice messages, direct",
-    "language": "English (Hinglish accent)",
+    "name": "[Your Name]",
+    "location": "[Your Location]",
+    "style": "[Your preferred AI response style, e.g., casual, direct]",
+    "language": "[Your preferred language]",
     "projects": [
-        "Ultimate AI Agent (Cloudflare + GitHub Actions)",
-        "Barnor — Shopify dropshipping (barnor.in)",
-        "NickPlays — gaming YouTube channel"
+        "[Your Project 1]",
+        "[Your Project 2]"
     ],
-    "expertise": "self-taught developer, mobile-only workflow, vibe coding with AI",
-    "preferences": "complete files not diffs, free APIs only, no credit cards",
-    "tools": "Antigravity (Gemini vibe coder), Cloudflare Workers, GitHub Actions",
-    "note": "Works entirely on mobile. Gets frustrated when errors repeat. Pushes back on hallucinations."
+    "expertise": "[Your expertise, e.g., Python developer]",
+    "preferences": "[Your preferences, e.g., complete files, specific libraries]",
+    "tools": "[Your tools, e.g., GitHub, VS Code]",
+    "note": "[Any extra notes for the AI]"
 }
 
 # In-memory fallback when KV is unavailable
@@ -171,7 +170,7 @@ def build_system_prompt_context() -> str:
         recent  = get_recent_context()
         lines = [
             "=== USER CONTEXT ===",
-            f"You are talking to {profile.get('name', 'Nick')}.",
+            f"You are talking to {profile.get('name', 'User')}.",
             f"Style: {profile.get('style', '')}",
             f"Language: {profile.get('language', 'English')}",
             f"Active projects: {', '.join(profile.get('projects', []))}",
@@ -181,7 +180,7 @@ def build_system_prompt_context() -> str:
         if recent:
             lines.append("=== RECENT CONVERSATION (last 5 min) ===")
             for msg in recent:
-                tag = "Nick" if msg["role"] == "user" else "You (AI)"
+                tag = "User" if msg["role"] == "user" else "You (AI)"
                 lines.append(f"{tag}: {msg['content']}")
             lines.append("")
         lines.append("=== YOUR TASK ===")

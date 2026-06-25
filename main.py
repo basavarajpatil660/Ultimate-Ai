@@ -64,7 +64,7 @@ def main():
         ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY", None)
 
         if not prompt and mode == "auto":
-            idea_res = call_llm("Generate one unique content idea for NickPlays YouTube channel (gaming/Crew Motorfest). Return only the idea.")
+            idea_res = call_llm("Generate one unique content idea for my YouTube channel. Return only the idea.")
             news_res = call_llm("Generate one short AI news briefing bullet point.")
 
             if idea_res:
