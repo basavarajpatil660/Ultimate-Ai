@@ -40,7 +40,7 @@
 
 **🎨 Image Generation**
 <br/>
-<img src="https://placeholder.pics/svg/300x300/1a1a2e/58a6ff/FLUX+Image+Output" width="100%"/>
+<img src="https://i.postimg.cc/5jQ30bgR/photo-2026-06-26-23-20-55.jpg" width="100%"/>
 <br/>
 <sub>FLUX 1 Schnell via Cloudflare Workers AI</sub>
 
@@ -49,7 +49,7 @@
 
 **✏️ Image Editing**
 <br/>
-<img src="https://placeholder.pics/svg/300x300/1a1a2e/00d26a/img2img+Edit+Output" width="100%"/>
+<img src="https://i.postimg.cc/jCnX5tcg/photo-2026-06-26-23-53-41.jpg" width="100%"/>
 <br/>
 <sub>Stable Diffusion img2img — attach photo + prompt</sub>
 
@@ -58,7 +58,7 @@
 
 **🔍 Web Research**
 <br/>
-<img src="https://placeholder.pics/svg/300x300/1a1a2e/ffd93d/Live+Search+Result" width="100%"/>
+<img src="https://i.postimg.cc/6T403tcS/Chat-GPT-Image-Jun-27-2026-07-28-25-AM.png" width="100%"/>
 <br/>
 <sub>Tavily search + LLM synthesis</sub>
 
