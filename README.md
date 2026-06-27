@@ -760,7 +760,6 @@ Stuck on setup? Something not working?
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-itsbasavarajmp-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/itsbasavarajmp)
 [![GitHub](https://img.shields.io/badge/GitHub-basavarajpatil660-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/basavarajpatil660)
 [![Instagram](https://img.shields.io/badge/Instagram-basavaraj__nick-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/basavaraj_nick)
-[![YouTube](https://img.shields.io/badge/YouTube-NickPlays-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@NickPlays)
 
 <br/>
 
